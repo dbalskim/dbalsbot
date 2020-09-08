@@ -47,7 +47,7 @@ async def on_message(message):
     if message.content.endswith("이준서는?"):
         await message.channel.send("쿨찐")
     if message.content.endswith("김연성은?"):
-        await message.channel.send("바보")
+        await message.channel.send("똥멍청이")
     if message.content.endswith("이동현은?"):
         await message.channel.send("블랙스컬")
     if message.content.endswith("김태연은?"):
