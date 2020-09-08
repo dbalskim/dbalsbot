@@ -104,5 +104,5 @@ async def on_message(message):
         await message.channel.send("언뮤트: \"유저ID 뮤트해제\"")
 
 
-
-client.run("NzUyNjk5OTA4OTY3ODkwOTk0.X1bcag.yNHEWmbmoNZMuIVEMER_jgiQeuQ")
+access_token = os.environ["BOT_TOKEN"]
+client.run(access_token)
