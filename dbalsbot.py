@@ -43,6 +43,8 @@ async def on_message(message):
             await message.channel.send("ㅗ")
     if message.content.endswith("잘했어"):
         await message.channel.send("감사합니다")
+    if message.content.endswith("조용히좀"):
+        await message.channel.send("이준서 시비 ㄴ")
     if message.content.endswith("못했어"):
         await message.channel.send("ㅗ")
     if message.content.endswith("야 드발스"):
