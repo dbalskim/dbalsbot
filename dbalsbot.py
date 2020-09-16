@@ -331,7 +331,6 @@ async def on_message(message):
                             continue
                         else:
                             await message.channel.send(str(command) + "play " + str(musicList[i][j]))
-                            break
                     break
 
                 if (i == 99):
