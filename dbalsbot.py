@@ -277,8 +277,7 @@ async def on_message(message):
         if (len(message_split) == 1):
             for i in range(len(musicList)):
                 if (len(musicList[i]) > 0):
-                    topic = ' - '.join(musicList[i][:2]
-                    await message.channel.send(topic)
+                    await message.channel.send(musicList[i][0] + " - " + musicList[i][1])
         else:
             await message.channel.send("명령어만 입력해 주세요")
 
