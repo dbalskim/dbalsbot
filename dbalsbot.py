@@ -343,7 +343,34 @@ async def on_message(message):
         else:
             await message.channel.send("인수가 올바르지 않습니다.")
 
+    if message.content.startswith("/renamePlayList"):
+        message_split = message.content.split()
+        if len(message_split) == 3:
+            listName = message_split[1]
+            newName = message_split[2]
+            for i in range(len(musicList)):
+                if (listName in musicList[i]):
+                    if (musicList[i][1] == "public"):
+                        musicList[i][0] = newName
+                        await message.channel.send("정상적으로 처리되었습니다.")
+                        break
+                    else:
+                        owner = musicList[i]
+                        if (message.author.id == IDdict[owner[1]]):
+                            musicList[i][0] == newName
+                            await message.channel.send("정상적으로 처리되었습니다.")
+                            break
+                        else:
+                            await message.channel.send("당신은 이 플레이 리스트에 접근 권한이 없습니다.")
+                            break
 
+
+                if (i == 99):
+                    if listName not in musicList[i]:
+                        await message.channel.send("해당 이름의 리스트가 존재하지 않습니다.")
+
+        else:
+            await message.channel.send("인수가 올바르지 않습니다.")
 
 
 
@@ -364,6 +391,7 @@ async def on_message(message):
 언뮤트: \"이름 뮤트 해제\"
 플레이리스트생성: \"/setPlayList 플레이리스트이름 public 또는 이름\"
 플레이리스트출력: \"/getPlayList 플레이리스트이름\"
+플레이리스트이름변경: \"/renamePlayList 플레이리스트이름 바꿀이름\"
 플레이리스트삭제: \"/delPlayList 플레이리스트이름\"
 노래추가: \"/add 플레이리스트이름 노래이름\"
 노래삭제: \"/remove 플레이리스트이름 노래이름\"
