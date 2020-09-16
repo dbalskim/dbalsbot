@@ -13,6 +13,9 @@ IDdict = ({"김유민": 717621111214571610, "최하린": 550961525473542174, "�
            "파티원모집": 748052499159580774, "명령어": 726374006701293578, "머가리전용채널": 733133750954885193,
            "국민청원": 747989168340074608, "건의사항": 729553118320132197, "투표게시판": 747989212254699670,
            "포토샵해드림": 752685911778656436, "신고게시판": 748142921911631913, "로우패밀리전용채널": 736590900871823421})
+musicList = []
+for i in range(100):
+    musicList.append(list())
 
 
 @client.event
@@ -68,15 +71,15 @@ async def on_message(message):
     if message.content.endswith("이준서는?"):
         await message.channel.send("쿨찐")
     if message.content.endswith("김연성은?"):
-        await message.channel.send("똥멍청이")
+        await message.channel.send("권력남용하는 똥멍청이")
     if message.content.endswith("이동현은?"):
-        await message.channel.send("블랙스컹크")
+        await message.channel.send("공항도둑")
     if message.content.endswith("김태연은?"):
-        await message.channel.send("난 한국인이야~")
+        await message.channel.send("이슬람모태신앙아랍인")
     if message.content.endswith("김경빈은?"):
         await message.channel.send("난 삭발은 하지 않을거야")
     if message.content.endswith("김현진은?"):
-        await message.channel.send("호프란시스코에서온 호주인")
+        await message.channel.send("호발년")
     if message.content.endswith("진은석은?"):
         await message.channel.send("정규짝사랑 10년차")
     if message.content.endswith("서태민은?"):
@@ -86,11 +89,13 @@ async def on_message(message):
     if message.content.endswith("최하린은?"):
         await message.channel.send("시미새(시미켄에 미친 새X)")
     if message.content.endswith("유태준은?"):
-        await message.channel.send("He is K-gay")
+        await message.channel.send("K-gay")
     if message.content.endswith("이준아는?"):
         await message.channel.send("태주짝사랑러")
     if message.content.endswith("드발스봇은?"):
         await message.channel.send("천재의 창작물")
+    if message.content.endswith("꽃미남"):
+        await message.channel.send("유민선 우한으로 추방함 ㅅㄱ")
 
     try:
         if message.content.endswith("사진 보내줘"):
@@ -120,7 +125,6 @@ async def on_message(message):
         author = message.guild.get_member(IDdict[name.strip()])
         msg = message_split[0]
         await author.send(msg)
-        await message.channel.send(msg + "라고 " + name + "에게 보냈습니다.")
         embed = discord.Embed(title="성공적으로 실행되었습니다.", description=name + "에게 " + msg + "를 보냈습니다.", color=0x62c1cc)
         await message.channel.send(embed=embed)
 
@@ -152,12 +156,198 @@ async def on_message(message):
     if message.content.endswith("사진 목록"):
         await message.channel.send("공지사항을 참고하세요.")
 
-    if message.content.startswith("!투표"):
+    if message.content.startswith("/투표"):
         vote = message.content[4:].split("|")
         await message.channel.send("__**⭐" + vote[0] + "**__")
         for i in range(1, len(vote)):
             choose = await message.channel.send("```" + vote[i] + "```")
             await choose.add_reaction('👍')
+
+    if message.content.startswith("/setPlayList"):
+        message_split = message.content.split()
+        if (len(message_split) == 3):
+            listName = message_split[1]
+            access = message_split[2]
+            if (access == "public" or access == "김유민" or access == "최하린" or access == "이준서" or access == "김태연" or access == "봉근우" or access == "서태민" or access == "이동현" or access == "유민선" or access == "김경빈" or access == "신우혁" or access == "진은석" or access == "김현진" or access == "김준우" or access == "유태준" or access == "김민우" or access == "김연성" or access == "전지홍" or access == "이재환" or access == "최은서" or access == "이준아"):
+                for i in range(len(musicList)):
+                    if(listName in musicList[i]):
+                        await message.channel.send("이미 같은 이름의 리스트가 존재합니다")
+                        break
+                    else:
+                        if(i == 99):
+                            if(len(musicList[i]) >= 1):
+                                await message.channel.send("리스트가 꽉찼습니다.")
+                                break
+                        if (len(musicList[i]) == 0):
+                            musicList[i].append(listName)
+                            musicList[i].append(access)
+                            await message.channel.send("리스트가 등록되었습니다.")
+                            break
+                        else:
+                            continue
+            else:
+                await message.channel.send("해당 이름이 존재하지 않습니다")
+        else:
+            await message.channel.send("인수가 정확하지 않습니다.")
+
+    if message.content.startswith("/getPlayList"):
+        message_split = message.content.split()
+        if len(message_split) == 2:
+            listName = message_split[1]
+            for i in range(len(musicList)):
+                if (listName in musicList[i]):
+                    await message.channel.send(musicList[i])
+                    break
+                if(i == 99):
+                    if (listName not in musicList[i]):
+                        await message.channel.send("해당이름의 플레이 리스트가 존재하지 않습니다.")
+        else:
+            await message.channel.send("인수가 올바르지 않습니다.")
+
+    if message.content.startswith("/add"):
+        message_split = message.content.split()
+        if len(message_split) >= 3:
+            listName = message_split[1]
+            song = message_split[2:]
+            song = ' '.join(song)
+            for i in range(len(musicList)):
+                if (listName in musicList[i]):
+                    if (musicList[i][1] == "public"):
+                        musicList[i].append(song)
+                        await message.channel.send("정상적으로 처리되었습니다. ")
+                        break
+                    else:
+                        owner = musicList[i]
+                        if (message.author.id == IDdict[owner[1]]):
+                            musicList[i].append(song)
+                            await message.channel.send("정상적으로 처리되었습니다. ")
+                            break
+                        else:
+                            await message.channel.send("당신은 이 플레이 리스트에 접근 권한이 없습니다.")
+                            break
+
+
+                if (i == 99):
+                    if listName not in musicList[i]:
+                        await message.channel.send("해당 이름의 리스트가 존재하지 않습니다.")
+
+        else:
+            await message.channel.send("인수가 올바르지 않습니다.")
+
+    if message.content.startswith("/remove"):
+        message_split = message.content.split()
+        if len(message_split) >= 3:
+            listName = message_split[1]
+            song = message_split[2:]
+            song = ' '.join(song)
+            for i in range(len(musicList)):
+                if (listName in musicList[i]):
+                    if (musicList[i][1] == "public"):
+                        try:
+                            musicList[i].remove(song)
+                            await message.channel.send("정상적으로 처리되었습니다. ")
+                            break
+                        except:
+                            await message.channel.send("해당 노래가 존재하지 않습니다.")
+                            break
+                    else:
+                        owner = musicList[i]
+                        if (message.author.id == IDdict[owner[1]]):
+                            try:
+                                musicList[i].remove(song)
+                                await message.channel.send("정상적으로 처리되었습니다.")
+                                break
+                            except:
+                                await message.channel.send("해당 노래가 존재하지 않습니다.")
+                                break
+                        else:
+                            await message.channel.send("당신은 이 플레이 리스트에 접근 권한이 없습니다.")
+                            break
+
+
+                if (i == 99):
+                    if listName not in musicList[i]:
+                        await message.channel.send("해당 이름의 리스트가 존재하지 않습니다.")
+
+        else:
+            await message.channel.send("인수가 올바르지 않습니다.")
+
+    if message.content.startswith("/showPlayList"):
+        message_split = message.content.split()
+        if (len(message_split) == 1):
+            for i in range(len(musicList)):
+                if (len(musicList[i]) > 0):
+                    await message.channel.send(musicList[i][0])
+        else:
+            await message.channel.send("명령어만 입력해 주세요")
+
+    if message.content.startswith("/delPlayList"):
+        message_split = message.content.split()
+        if (len(message_split) == 2):
+            listName = message_split[1]
+            for i in range(len(musicList)):
+                if (listName in musicList[i]):
+                    if (musicList[i][1] == "public"):
+                        del musicList[i]
+                        musicList.append(list())
+                        await message.channel.send("리스트가 삭제되었습니다.")
+                        break
+
+                    else:
+                        owner = musicList[i]
+                        if (message.author.id == IDdict[owner[1]]):
+
+                            del musicList[i]
+                            musicList.append(list())
+                            await message.channel.send("리스트가 삭제되었습니다. ")
+                            break
+                        else:
+                            await message.channel.send("당신은 이 플레이 리스트에 접근 권한이 없습니다.")
+                            break
+
+
+                if (i == 99):
+                    if listName not in musicList[i]:
+                        await message.channel.send("해당 이름의 리스트가 존재하지 않습니다.")
+
+
+        else:
+            await message.channel.send("인수가 올바르지 않습니다.")
+
+
+
+    if message.content.startswith("/getCommand"):
+        message_split = message.content.split()
+        if (len(message_split) == 3):
+            listName = message_split[1]
+            command = message_split[2]
+            for i in range(len(musicList)):
+                if(listName in musicList[i]):
+                    for j in range(len(musicList[i])):
+                        if(len(musicList[i]) <= 2):
+                            await message.channel.send("노래가 존재하지 않습니다.")
+                            break
+                        if(j == 0 or j == 1):
+                            continue
+                        else:
+                            await message.channel.send(str(command) + "play " + str(musicList[i][j]))
+                            break
+                    break
+
+                if (i == 99):
+                    if listName not in musicList[i]:
+                        await message.channel.send("해당 이름의 리스트가 존재하지 않습니다.")
+                        break
+
+
+        else:
+            await message.channel.send("인수가 올바르지 않습니다.")
+
+
+
+
+
+
 
 
 
@@ -167,11 +357,18 @@ async def on_message(message):
 물어보기: \"이름은/는?\"
 사진보내기: \"사진이름.png 사진 보내줘\"
 사진목록 확인: \"사진 목록\"
-투표기능: \"!투표 주제|내용1|내용2...\"
+투표: \"/투표 주제|내용1|내용2...\"
 특정 채널에 메시지: \"OOO 채널에 메시지(이)라고 보내줘\"
 개인 메시지: \"메시지(이)라고 OOO에게 보내줘\"
 뮤트: \"이름 저새기 뮤트좀\"
-언뮤트: \"이름 뮤트 해제\"""")
+언뮤트: \"이름 뮤트 해제\"
+플레이리스트생성: \"/setPlayList 플레이리스트이름 public 또는 이름\"
+플레이리스트출력: \"/getPlayList 플레이리스트이름\"
+플레이리스트삭제: \"/delPlayList 플레이리스트이름\"
+노래추가: \"/add 플레이리스트이름 노래이름\"
+노래삭제: \"/remove 플레이리스트이름 노래이름\"
+모든플레이리스트이름출력: \"/showPlayList\"
+노래커맨드출력: \"/getCommand 플레이리스트이름 시작명령어\"""")
 
 
 access_token = os.environ["BOT_TOKEN"]
