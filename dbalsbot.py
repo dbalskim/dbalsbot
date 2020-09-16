@@ -277,7 +277,8 @@ async def on_message(message):
         if (len(message_split) == 1):
             for i in range(len(musicList)):
                 if (len(musicList[i]) > 0):
-                    await message.channel.send(musicList[i][0])
+                    topic = ' - '.join(musicList[i][:2]
+                    await message.channel.send(topic)
         else:
             await message.channel.send("명령어만 입력해 주세요")
 
@@ -362,6 +363,8 @@ async def on_message(message):
                         else:
                             await message.channel.send("당신은 이 플레이 리스트에 접근 권한이 없습니다.")
                             break
+                else:
+                      continue
 
 
                 if (i == 99):
