@@ -356,7 +356,7 @@ async def on_message(message):
                     else:
                         owner = musicList[i]
                         if (message.author.id == IDdict[owner[1]]):
-                            musicList[i][0] == newName
+                            musicList[i][0] = newName
                             await message.channel.send("정상적으로 처리되었습니다.")
                             break
                         else:
