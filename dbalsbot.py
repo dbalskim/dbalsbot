@@ -22,7 +22,7 @@ for i in range(100):
 async def on_ready():
     print(client.user.id)
     print("ready")
-    game = discord.Game("코딩")
+    game = discord.Game("거확찢")
     await client.change_presence(status=discord.Status.online, activity=game)
 
 @client.event
@@ -33,7 +33,7 @@ async def on_member_join(member):
 @client.event
 async def on_message(message):
     if message.content.startswith("하이 드발스"):
-        num = random.randint(1, 5)
+        num = random.randint(1, 10)
         if num == 1:
             await message.channel.send("네")
         elif num == 2:
@@ -43,59 +43,69 @@ async def on_message(message):
         elif num == 4:
             await message.channel.send("안물")
         elif num == 5:
-            await message.channel.send("ㅗ")
+            await message.channel.send("으찌라구요")
+        elif num == 6:
+            await message.channel.send("함바이")
+        elif num == 7:
+            await message.channel.send("국적 ㅊㅇ")
+        elif num == 8:
+            await message.channel.send("븅")
+        elif num == 9:
+            await message.channel.send("넹 주인님")
+        else:
+           await message.channel.send("느그")
     if message.content.endswith("잘했어"):
         await message.channel.send("감사합니다")
     if message.content.endswith("조용히좀"):
-        await message.channel.send("이준서 시비 ㄴ")
+        await message.channel.send("ㅂ")
     if message.content.endswith("못했어"):
-        await message.channel.send("ㅗ")
+        await message.channel.send("ㄹㅇ ㅂ")
     if message.content.endswith("야 드발스"):
         await message.channel.send("왜불러 이새끼야")
     if message.content.endswith("개발련"):
         await message.channel.send("응 닥쳐")
     if message.content.endswith("바보"):
-        await message.channel.send("김연성 킥한다 ㅅㄱ")
+        await message.channel.send("김연성 킥한다 ㅂ")
     if message.content.endswith("아니 ㅋㅋ"):
-        await message.channel.send("김연성 귀척ㄴ 킥한다 ㅅㄱ")
+        await message.channel.send("김연성 귀척ㄴ 킥한다 ㅂ")
     if message.content.endswith("나 잘생김?"):
         await message.channel.send("ㄴ")
     if message.content.endswith("잘생김"):
         await message.channel.send("리랄 ㄴ")
     if message.content.endswith("잘생긴 듯"):
-        await message.channel.send("ㅗ")
+        await message.channel.send("ㅈㄹ")
     if message.content.endswith("김유민은?"):
         await message.channel.send("IQ999999999")
     if message.content.endswith("유민선은?"):
-        await message.channel.send("ㅈ미남")
+        await message.channel.send("박쥐먹방")
     if message.content.endswith("이준서는?"):
-        await message.channel.send("쿨찐")
+        await message.channel.send("이집트 스핑크스")
     if message.content.endswith("김연성은?"):
-        await message.channel.send("권력남용하는 똥멍청이")
+        await message.channel.send("-잼-")
     if message.content.endswith("이동현은?"):
-        await message.channel.send("공항도둑")
+        await message.channel.send("노인정 34년차")
     if message.content.endswith("김태연은?"):
         await message.channel.send("이슬람모태신앙아랍인")
     if message.content.endswith("김경빈은?"):
         await message.channel.send("난 삭발은 하지 않을거야")
     if message.content.endswith("김현진은?"):
-        await message.channel.send("호발년")
+        await message.channel.send("좆스윌스")
     if message.content.endswith("진은석은?"):
-        await message.channel.send("정규짝사랑 10년차")
+        await message.channel.send("양궁부에서 추방")
     if message.content.endswith("서태민은?"):
-        await message.channel.send("점중의 점")
+        await message.channel.send("점때문에 차임")
     if message.content.endswith("최은서는?"):
         await message.channel.send("게이샘기")
     if message.content.endswith("최하린은?"):
         await message.channel.send("시미새(시미켄에 미친 새X)")
     if message.content.endswith("유태준은?"):
-        await message.channel.send("K-gay")
+        await message.channel.send("함바이")
     if message.content.endswith("이준아는?"):
-        await message.channel.send("태주짝사랑러")
+        await message.channel.send("어묵")
     if message.content.endswith("드발스봇은?"):
         await message.channel.send("천재의 창작물")
     if message.content.endswith("꽃미남"):
-        await message.channel.send("유민선 우한으로 추방함 ㅅㄱ")
+        await message.channel.send("집에 거울이 ")
 
     try:
         if message.content.endswith("사진 보내줘"):
@@ -161,7 +171,7 @@ async def on_message(message):
         await message.channel.send("__**⭐" + vote[0] + "**__")
         for i in range(1, len(vote)):
             choose = await message.channel.send("```" + vote[i] + "```")
-            await choose.add_reaction('👍')
+            await choose.add_reaction('✅')
 
 
 
